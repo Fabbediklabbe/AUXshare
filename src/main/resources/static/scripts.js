@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             else if (song.link.includes("soundcloud.com")) {
                 songHTML += `
-            <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" 
+            <iframe 
                 src="https://w.soundcloud.com/player/?url=${encodeURIComponent(song.link)}">
             </iframe>`;
             }
