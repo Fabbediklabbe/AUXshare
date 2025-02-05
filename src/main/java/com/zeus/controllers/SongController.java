@@ -76,14 +76,14 @@ public class SongController {
     @Transactional
     public ResponseEntity<Void> deleteSong(@PathVariable Long id) {
         if (songRepository.existsById(id)) {
-            System.out.println("🔍 Försöker radera låt med ID: " + id);
+            System.out.println("Försöker radera låt med ID: " + id);
 
             songRepository.deleteSongById(id); // Använd vår anpassade metod
 
-            System.out.println("✅ Låten raderades! Kontrollera MySQL.");
+            System.out.println("Låten raderades! Kontrollera MySQL.");
             return ResponseEntity.ok().build();
         } else {
-            System.out.println("⚠️ Låten med ID " + id + " fanns inte i databasen.");
+            System.out.println("Låten med ID " + id + " fanns inte i databasen.");
             return ResponseEntity.notFound().build();
         }
 
