@@ -35,7 +35,7 @@ public class SongController {
 
     @GetMapping
     public ResponseEntity<List<Map<String, Object>>> getSongs() {
-        List<Song> songs = songRepository.findAll();
+        List<Song> songs = songRepository.findAllOrderByIdDesc();
 
         List<Map<String, Object>> response = songs.stream().map(song -> {
             Map<String, Object> songMap = new HashMap<>();
