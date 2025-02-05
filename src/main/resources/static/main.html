@@ -13,12 +13,13 @@
 
     <main>
 
-        <h2>Lägg till en ny låt</h2>
+        
         <form id="add-song-form">
-            <input type="text" id="username" placeholder="Ditt namn" required>
-            <input type="text" id="title" placeholder="Låttitel" required>
-            <input type="text" id="artist" placeholder="Artist" required>
-            <input type="url" id="link" placeholder="Länk (YouTube/Spotify/Soundcloud)">
+            <h2>Lägg till en ny låt</h2>
+            <input type="text" id="username" placeholder="Ditt namn" required autocomplete="off">
+            <input type="text" id="title" placeholder="Låttitel" required required autocomplete="off">
+            <input type="text" id="artist" placeholder="Artist" required required autocomplete="off">
+            <input type="url" id="link" placeholder="Länk (YouTube/Spotify/Soundcloud)" required autocomplete="off">
             <button type="submit">Lägg till</button>
         </form>
         <p id="message"></p>
