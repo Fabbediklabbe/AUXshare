@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeus</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="ZEUS.png" alt="ZEUS" id="logo">
+    </header>
+
+    <main>
+
+        <h2>Lägg till en ny låt</h2>
+        <form id="add-song-form">
+            <input type="text" id="username" placeholder="Ditt namn" required>
+            <input type="text" id="title" placeholder="Låttitel" required>
+            <input type="text" id="artist" placeholder="Artist" required>
+            <input type="url" id="link" placeholder="Länk (YouTube/Spotify/Soundcloud)">
+            <button type="submit">Lägg till</button>
+        </form>
+        <p id="message"></p>
+        <h2>Senaste rekommendationerna</h2>
+        <div id="song-list">
+            <!-- Låtar hämtas här via JavaScript -->
+        </div>
+
+        
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

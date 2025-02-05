@@ -1,0 +1,133 @@
+/* Gör bakgrunden lite snyggare */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    text-align: center;
+}
+
+/* Header-stil */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    font-size: 24px;
+}
+
+/* Låtliste-container */
+#song-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Stil för varje låt-bricka */
+.song {
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.song:hover {
+    transform: translate(0px, -10px);
+}
+
+/* Stil för låttitel */
+.song strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* Stil för artist */
+.song small {
+    color: rgb(0, 0, 0);
+}
+
+/* Stil för länken */
+.song a {
+    display: block;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.song a:hover {
+    color: #0056b3;
+}
+
+/* Form-stilar */
+form {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin-top: 20px;
+}
+
+input {
+    display: block;
+    width: 250px;
+    padding: 10px;
+    margin: 5px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.delete-button {
+    background-color: red; /* Röd bakgrund */
+    color: white; /* Vit text */
+    border: none; /* Ingen kant */
+    padding: 7px 7px; /* Mindre padding */
+    font-size: 17px; /* Mindre textstorlek */
+    cursor: pointer; /* Visar klickbar hand */
+    border-radius: 5px; /* Rundade hörn */
+    transition: background-color 0.3s ease; /* Smooth hover-effekt */
+}
+
+.delete-button:hover {
+    background-color: darkred; /* Mörkare röd vid hover */
+}
+
+
+/* Meddelande-text */
+#message {
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+}
+
+/* Header med logotyp */
+header {
+    background-color: #333;
+    text-align: center;
+    padding: 15px;
+}
+
+#logo {
+    width: 300px; /* Anpassa storleken */
+    height: 100px;
+}
