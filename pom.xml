@@ -49,10 +49,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<version>9.2.0</version>
-			<scope>runtime</scope>
+			<groupId>org.mariadb.jdbc</groupId>
+    			<artifactId>mariadb-java-client</artifactId>
+    			<version>3.3.2</version>
 		</dependency>
 	</dependencies>
 
