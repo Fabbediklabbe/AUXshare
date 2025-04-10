@@ -31,7 +31,10 @@ Zeus is a simple and elegant music-sharing web application that allows users to 
 
 4. Run the application manually:
     ```bash
+    screen -S ZEUS
     sudo java -jar target/zeus-0.0.1-SNAPSHOT.jar
+    ctrl + a
+    ctrl + d
     ```
 
 ## Useful Commands
