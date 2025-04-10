@@ -139,6 +139,6 @@ button:hover {
 
 #logo {
     width: 300px; /* Anpassa storleken */
-    height: 125px;
+    height: auto;
 }
 

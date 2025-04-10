@@ -1,0 +1,108 @@
+body
+{
+    margin: 2em;
+}
+
+h1
+{
+    font-size: 4em;
+    text-align: center;
+}
+
+h2
+{
+    border-bottom: 1px  solid;
+}
+
+ul
+{
+    list-style-type: circle;
+    padding-left: 1em;
+}
+
+ul li
+{
+    margin-top: 1em;
+}
+
+.contact-info
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.contact-info a
+{
+    color: black;
+}
+
+.info-block
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.info-block div
+{
+    width: 100%;
+}
+
+.info-block .date-location
+{
+    text-align: right;
+}
+
+.info-block .date-location img
+{
+    width: 10em;
+    height: auto;
+}
+
+@media only screen and (min-width: 800px) {
+    .info-block div {
+        width: 48%;
+    }
+    .info-block ul {
+    width: 150%;
+    }	
+
+    .container {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    .info-block ul {
+    width: 100%;
+}
+}
+
+.container {
+    border-bottom: 1px solid;
+}
+
+.pictureOfMe
+{
+    text-align: center;
+}
+
+.pictureOfMe img
+{
+    max-width: 15em;
+    height: auto;
+    clip-path: circle(50%);
+}
+
+.auxlink img
+{
+    width: 200px;
+    height: auto
+}
