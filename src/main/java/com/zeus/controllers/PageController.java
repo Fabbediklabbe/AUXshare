@@ -20,10 +20,4 @@ public class PageController {
     public String showAuxshare() {
         return "auxshare"; // laddar templates/auxshare.html
     }
-
-    @GetMapping("/hello")
-    public String hello(Model model) {
-        model.addAttribute("name", "Fabian");
-        return "hello"; // Matchar hello.html
-    }
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Logga in</title>
+    <link rel="stylesheet" href="/css/auxshare.css">
+</head>
+<body>
+    <h1>Logga in</h1>
+    <form th:action="@{/auxshare/login}" method="post">
+        <label for="username">Användarnamn:</label>
+        <input type="text" name="username" required>
+        <br>
+        <label for="password">Lösenord:</label>
+        <input type="password" name="password" required>
+        <br>
+        <button type="submit">Logga in</button>
+    </form>
+    <p>Har du inget konto? <a th:href="@{/auxshare/register}">Registrera dig här</a>.</p>
+</body>
+</html>

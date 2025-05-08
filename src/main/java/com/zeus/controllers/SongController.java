@@ -63,7 +63,11 @@ public class SongController {
         }
 
         Optional<User> existingUser = userRepository.findByUsername(username);
-        User user = existingUser.orElseGet(() -> userRepository.save(new User(username)));
+        if (existingUser.isEmpty()) {
+            return ResponseEntity.status(401).build(); // Unauthorized
+        }
+        User user = existingUser.get();
+
 
         song.setUser(user);
         song.setAddedAt(LocalDateTime.now());
