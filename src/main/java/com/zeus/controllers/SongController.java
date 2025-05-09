@@ -7,10 +7,12 @@ import com.zeus.repositories.UserRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -77,21 +79,20 @@ public class SongController {
     }
 
     @DeleteMapping("/{id}")
-    @Transactional
-    public ResponseEntity<Void> deleteSong(@PathVariable Long id) {
-        if (songRepository.existsById(id)) {
-            System.out.println("Försöker radera låt med ID: " + id);
-
-            songRepository.deleteSongById(id); // Använd vår anpassade metod
-
-            System.out.println("Låten raderades! Kontrollera MySQL.");
-            return ResponseEntity.ok().build();
-        } else {
-            System.out.println("Låten med ID " + id + " fanns inte i databasen.");
+    public ResponseEntity<Void> deleteSong(@PathVariable Long id, Principal principal) {
+        Optional<Song> songOpt = songRepository.findById(id);
+        if (songOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-    }
+        Song song = songOpt.get();
 
-    
+        // Kontrollera att det är användaren som äger låten
+        if (!song.getUser().getUsername().equals(principal.getName())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        songRepository.delete(song);
+        return ResponseEntity.ok().build();
+    }
 }

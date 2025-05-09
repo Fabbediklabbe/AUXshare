@@ -9,7 +9,7 @@
     <title>AUX</title>
     <link rel="stylesheet" href="css/auxshare.css">
 </head>
-<body th:data-authenticated="${#authorization.expression('isAuthenticated()')}">
+<body th:data-authenticated="${#authorization.expression('isAuthenticated()')}" th:data-username="${#authentication.name}">
     <header>
         <img src="images/AUXlogo.png" alt="AUX" id="logo">
     </header>

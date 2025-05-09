@@ -80,13 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
             songElement.classList.add("song");
             songElement.innerHTML = generateSongHTML(song);
 
-            const deleteButton = document.createElement("button");
-            deleteButton.classList.add("delete-button");
-            deleteButton.innerText = "🗑️";
-            deleteButton.setAttribute("data-id", song.id);
-            deleteButton.onclick = () => confirmDelete(song.id);
+            const loggedInUser = document.body.dataset.username;
 
-            songElement.appendChild(deleteButton);
+            if (isAuthenticated && song.username === loggedInUser) {
+                const deleteButton = document.createElement("button");
+                deleteButton.classList.add("delete-button");
+                deleteButton.innerText = "🗑️";
+                deleteButton.setAttribute("data-id", song.id);
+                deleteButton.onclick = () => confirmDelete(song.id);
+                songElement.appendChild(deleteButton);
+            }
             songList.appendChild(songElement);
         });
     }
@@ -123,17 +126,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function deleteSong(songId) {
-        fetch(`/api/songs/${songId}`, { method: "DELETE" })
-            .then(response => {
-                if (response.ok) {
-                    alert("Låten har tagits bort.");
-                    fetchSongs();
-                } else {
-                    alert("Fel vid borttagning av låt.");
-                }
-            })
-            .catch(error => console.error("Fel vid borttagning:", error));
+        const headers = {};
+
+        if (csrfHeader && csrfToken) {
+            headers[csrfHeader] = csrfToken;
+        }
+
+        fetch(`/api/songs/${songId}`, {
+            method: "DELETE",
+            headers: headers
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Låten har tagits bort.");
+                fetchSongs();
+            } else {
+                alert("Fel vid borttagning av låt.");
+            }
+        })
+        .catch(error => console.error("Fel vid borttagning:", error));
     }
+
 
     function extractYouTubeId(url) {
         const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
