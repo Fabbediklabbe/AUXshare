@@ -13,7 +13,7 @@ import java.util.List;
 public interface SongRepository extends JpaRepository<Song, Long> {
     
     // Hämta alla låtar i fallande ordning baserat på ID
-    @Query("SELECT s FROM Song s ORDER BY s.id DESC")
+    @Query("SELECT s FROM Song s JOIN FETCH s.user ORDER BY s.id DESC")
     List<Song> findAllOrderByIdDesc();
 
     // Hämta låtar för en specifik användare i fallande ordning

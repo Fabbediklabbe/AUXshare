@@ -22,10 +22,12 @@ public class Song {
     @Column
     private String link; // Länk till låten (t.ex. YouTube, Spotify)
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "user_id", nullable = false) // Kopplar till users-tabellen
-    @JsonIgnore // Hindrar att hela User-objektet serialiseras
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
+
+
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime addedAt;

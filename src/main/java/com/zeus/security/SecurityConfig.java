@@ -23,8 +23,8 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/login", "/register", "/css/**", "/images/**", "/auxshare", "/auxshare/logout").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/songs/**").permitAll()       // 👈 TILLÅT GET
-                .requestMatchers(HttpMethod.POST, "/api/songs/**").authenticated()  // 👈 Begränsa POST
+                .requestMatchers(HttpMethod.GET, "/api/songs/**").permitAll()       // TILLÅT GET
+                .requestMatchers(HttpMethod.POST, "/api/songs/**").authenticated()  // Begränsa POST
                 .anyRequest().permitAll() // eller .permitAll() beroende på din önskade säkerhetsnivå
             )
             .formLogin(form -> form
@@ -33,8 +33,9 @@ public class SecurityConfig {
                 .permitAll()
             )
             .logout(logout -> logout
-                .logoutSuccessUrl("/auxshare/login?logout")
-                .permitAll()
+            .logoutUrl("/auxshare/logout") // ← krävs om du använder den vägen i HTML
+            .logoutSuccessUrl("/auxshare/login?logout")
+            .permitAll()
             );
         return http.build();
     }

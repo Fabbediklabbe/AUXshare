@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
-<head th:with="csrfHeader=${_csrf.headerName}, csrfToken=${_csrf.token}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="_csrf" th:content="${csrfToken}" />
-    <meta name="_csrf_header" th:content="${csrfHeader}" />
+    <head th:with="csrfHeader=${_csrf.headerName}, csrfToken=${_csrf.token}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="_csrf" th:content="${csrfToken}" />
+        <meta name="_csrf_header" th:content="${csrfHeader}" />
 
-    <title>AUX</title>
-    <link rel="stylesheet" href="css/auxshare.css">
-</head>
-<body th:data-authenticated="${#authorization.expression('isAuthenticated()')}" th:data-username="${#authentication.name}">
-    <header>
-        <img src="images/AUXlogo.png" alt="AUX" id="logo">
-    </header>
+        <title>AUX</title>
+        <link rel="stylesheet" href="css/auxshare.css">
+    </head>
+    
+    <body th:data-authenticated="${#authorization.expression('isAuthenticated()')}" th:data-username="${#authentication.name}">
+        <header>
+            <img src="images/AUXlogo.png" alt="AUX" id="logo">
+        </header>
 
-    <main>
-        <div th:if="${#authorization.expression('isAuthenticated()')}">
-            <form th:action="@{/auxshare/logout}" method="post">
-                <button type="submit">Logga ut</button>
-            </form>
-        </div>
-        
-        <sec:authorize access="isAuthenticated()">
-            <form id="add-song-form">
-                <h2>Lägg till en ny låt</h2>
-                <!-- Använd inloggat användarnamn automatiskt -->
-                <input type="hidden" id="username" th:value="${#authentication.name}">
-                <input type="text" id="title" placeholder="Låttitel" required autocomplete="off">
-                <input type="text" id="artist" placeholder="Artist" required autocomplete="off">
-                <input type="url" id="link" placeholder="Länk (YouTube/Spotify/Soundcloud)" required autocomplete="off">
-                <button type="submit">Lägg till</button>
-            </form>
-        </sec:authorize>
+        <main>
+            <div th:if="${#authorization.expression('isAuthenticated()')}">
+                <form th:action="@{/auxshare/logout}" method="post">
+                    <button type="submit">Logga ut</button>
+                </form>
+            </div>
+            
+            <sec:authorize access="isAuthenticated()">
+                <form id="add-song-form">
+                    <h2>Lägg till en ny låt</h2>
+                    <!-- Använd inloggat användarnamn automatiskt -->
+                    <input type="hidden" id="username" th:value="${#authentication.name}">
+                    <input type="text" id="title" placeholder="Låttitel" required autocomplete="off">
+                    <input type="text" id="artist" placeholder="Artist" required autocomplete="off">
+                    <input type="url" id="link" placeholder="Länk (YouTube/Spotify/Soundcloud)" required autocomplete="off">
+                    <button type="submit">Lägg till</button>
+                </form>
+            </sec:authorize>
 
-        <div th:if="${not #authorization.expression('isAuthenticated()')}">
-            <p>Du måste <a href="/auxshare/login" style="color: inherit;">logga in</a> för att kunna lägga till låtar.</p>
-        </div>
+            <div th:if="${not #authorization.expression('isAuthenticated()')}">
+                <p>Du måste <a href="/auxshare/login" style="color: inherit;">logga in</a> för att kunna lägga till låtar.</p>
+            </div>
 
-        <p id="message"></p>
-        <h2>Senaste rekommendationerna</h2>
-        <div id="song-list">
-            <!-- Låtar hämtas här via JavaScript -->
-        </div>
-    </main>
+            <p id="message"></p>
+            <h2>Senaste rekommendationerna</h2>
+            <div id="song-list">
+                <!-- Låtar hämtas här via JavaScript -->
+            </div>
+        </main>
 
-    <script src="scripts/songs.js"></script>
-</body>
+        <script src="scripts/songs.js"></script>
+    </body>
 </html>
