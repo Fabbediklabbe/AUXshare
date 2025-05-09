@@ -3,9 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchSongs(); // Ladda låtar vid sidans start
 
     const isAuthenticated = document.body.dataset.authenticated === "true";
-
     const form = document.getElementById("add-song-form");
     const loginReminder = document.getElementById("login-reminder");
+
+    // Hämta CSRF-token och header
+    const csrfToken = document.querySelector('meta[name="_csrf"]')?.getAttribute('content');
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]')?.getAttribute('content');
 
     if (!isAuthenticated) {
         if (form) form.style.display = "none";
@@ -30,9 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const newSong = { title, artist, link };
 
+            const headers = {
+                "Content-Type": "application/json"
+            };
+
+            if (csrfHeader && csrfToken) {
+                headers[csrfHeader] = csrfToken;
+            }
+
             fetch(`/api/songs?username=${encodeURIComponent(username)}`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: headers,
                 body: JSON.stringify(newSong)
             })
             .then(response => {

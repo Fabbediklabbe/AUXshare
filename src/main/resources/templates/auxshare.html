@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
-<head>
+<head th:with="csrfHeader=${_csrf.headerName}, csrfToken=${_csrf.token}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${csrfToken}" />
+    <meta name="_csrf_header" th:content="${csrfHeader}" />
+
     <title>AUX</title>
     <link rel="stylesheet" href="css/auxshare.css">
 </head>
 <body th:data-authenticated="${#authorization.expression('isAuthenticated()')}">
-    >
     <header>
         <img src="images/AUXlogo.png" alt="AUX" id="logo">
     </header>
@@ -32,7 +34,7 @@
         </sec:authorize>
 
         <div th:if="${not #authorization.expression('isAuthenticated()')}">
-            <p>🔒 Du måste <a href="/auxshare/login">logga in</a> för att kunna lägga till låtar.</p>
+            <p>Du måste <a href="/auxshare/login" style="color: inherit;">logga in</a> för att kunna lägga till låtar.</p>
         </div>
 
         <p id="message"></p>
