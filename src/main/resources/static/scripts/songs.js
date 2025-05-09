@@ -93,6 +93,39 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             songList.appendChild(songElement);
         });
+
+
+        document.querySelectorAll(".like-button").forEach(button => {
+            button.addEventListener("click", function () {
+                const songId = this.getAttribute("data-id");
+
+                if (!isAuthenticated) {
+                    alert("Du måste vara inloggad för att gilla en låt.");
+                    return;
+                }
+
+                const headers = { "Content-Type": "application/json" };
+                if (csrfHeader && csrfToken) {
+                    headers[csrfHeader] = csrfToken;
+                }
+
+                const alreadyLiked = this.getAttribute("data-liked") === "true";
+                const method = alreadyLiked ? "DELETE" : "POST";
+
+                fetch(`/api/songs/${songId}/like`, {
+                    method: method,
+                    headers: headers
+                })
+                .then(response => {
+                    if (response.ok) {
+                        fetchSongs(); // Uppdatera UI
+                    } else {
+                        response.text().then(msg => alert(msg));
+                    }
+                })
+                .catch(error => console.error("Fel vid like/unlike:", error));
+            });
+        });
     }
 
     function generateSongHTML(song) {
@@ -117,6 +150,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         songHTML += `<br><small>Uppladdad av: <strong>${song.username || "Okänd"}</strong></small>`;
+
+        // ❤️ Likes
+        const likeCount = song.likes?.length || 0;
+        const likers = song.likes?.join(', ') || "Ingen har gillat än";
+        const loggedInUser = document.body.dataset.username;
+        const alreadyLiked = song.likes?.includes(loggedInUser);
+        songHTML += `
+            <div class="like-container">
+                <button class="like-button ${alreadyLiked ? 'liked' : ''}" data-id="${song.id}" data-liked="${alreadyLiked}" title="Gillad av: ${likers}">
+    ❤️              ${likeCount}
+                </button>
+            </div>
+        `;
+
         return songHTML;
     }
 
@@ -160,4 +207,5 @@ document.addEventListener("DOMContentLoaded", function () {
             ? `<iframe width="300" height="200" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`
             : "";
     }
+
 });

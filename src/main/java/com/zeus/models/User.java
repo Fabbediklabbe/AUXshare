@@ -20,6 +20,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Song> songs;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Like> likes;
+
+
     // OBS: Endast en tom konstruktor för JPA
     public User() {}
 

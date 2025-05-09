@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "songs")
@@ -27,6 +28,8 @@ public class Song {
     @JsonIgnore
     private User user;
 
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
+    private List<Like> likes;
 
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

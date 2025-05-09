@@ -1,7 +1,9 @@
 package com.zeus.controllers;
 
+import com.zeus.models.Like;
 import com.zeus.models.Song;
 import com.zeus.models.User;
+import com.zeus.repositories.LikeRepository;
 import com.zeus.repositories.SongRepository;
 import com.zeus.repositories.UserRepository;
 
@@ -28,10 +30,12 @@ public class SongController {
     private static final Logger logger = LoggerFactory.getLogger(SongController.class);
     private final SongRepository songRepository;
     private final UserRepository userRepository;
+    private final LikeRepository likeRepository;
 
-    public SongController(SongRepository songRepository, UserRepository userRepository) {
+    public SongController(SongRepository songRepository, UserRepository userRepository, LikeRepository likeRepository) {
         this.songRepository = songRepository;
         this.userRepository = userRepository;
+        this.likeRepository = likeRepository;
     }
 
     @GetMapping
@@ -49,6 +53,13 @@ public class SongController {
 
             // Använd `user_id` för att direkt hämta användarnamnet
             songMap.put("username", (song.getUser() != null) ? song.getUser().getUsername() : "Okänd");
+
+            List<Like> likes = likeRepository.findBySong(song);
+            List<String> likers = likes.stream()
+                .map((Like like) -> like.getUser().getUsername())
+                .toList();
+
+            songMap.put("likes", likers);
 
             return songMap;
         }).toList();
@@ -78,6 +89,41 @@ public class SongController {
         Song savedSong = songRepository.save(song);
         return ResponseEntity.ok(savedSong);
     }
+
+    @PostMapping("/{id}/like")
+    public ResponseEntity<?> likeSong(@PathVariable Long id, Principal principal) {
+        Optional<Song> songOpt = songRepository.findById(id);
+        if (songOpt.isEmpty()) return ResponseEntity.notFound().build();
+
+        Song song = songOpt.get();
+        User user = userRepository.findByUsername(principal.getName()).orElseThrow();
+
+        if (likeRepository.existsByUserAndSong(user, song)) {
+            return ResponseEntity.badRequest().body("Already liked");
+        }
+
+        Like like = new Like(user, song);
+        likeRepository.save(like);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}/like")
+    public ResponseEntity<?> unlikeSong(@PathVariable Long id, Principal principal) {
+        Optional<Song> songOpt = songRepository.findById(id);
+        if (songOpt.isEmpty()) return ResponseEntity.notFound().build();
+
+        Song song = songOpt.get();
+        User user = userRepository.findByUsername(principal.getName()).orElseThrow();
+
+        Optional<Like> likeOpt = likeRepository.findByUserAndSong(user, song);
+        if (likeOpt.isPresent()) {
+            likeRepository.delete(likeOpt.get());
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ingen like att ta bort");
+    }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSong(@PathVariable Long id, Principal principal) {
