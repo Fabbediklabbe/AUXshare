@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import jakarta.transaction.Transactional;
 
@@ -37,6 +36,7 @@ public class SongController {
 
     @GetMapping
     public ResponseEntity<List<Map<String, Object>>> getSongs() {
+        logger.info("Fetching all songs");
         List<Song> songs = songRepository.findAllOrderByIdDesc();
 
         List<Map<String, Object>> response = songs.stream().map(song -> {
@@ -51,13 +51,14 @@ public class SongController {
             songMap.put("username", (song.getUser() != null) ? song.getUser().getUsername() : "Okänd");
 
             return songMap;
-        }).collect(Collectors.toList());
+        }).toList();
 
         return ResponseEntity.ok(response);
     }
 
     @PostMapping
     public ResponseEntity<Song> addSong(@RequestBody Song song, @RequestParam String username) {
+        logger.info("Trying to add song by user: {}", username);
         if (song.getTitle() == null || song.getTitle().trim().isEmpty() ||
                 song.getArtist() == null || song.getArtist().trim().isEmpty() ||
                 song.getLink() == null || song.getLink().trim().isEmpty()) {
@@ -80,6 +81,7 @@ public class SongController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSong(@PathVariable Long id, Principal principal) {
+        logger.info("User {} trying to remove song with ID {}", principal.getName(), id);
         Optional<Song> songOpt = songRepository.findById(id);
         if (songOpt.isEmpty()) {
             return ResponseEntity.notFound().build();

@@ -13,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isAuthenticated) {
         if (form) form.style.display = "none";
         if (loginReminder) loginReminder.style.display = "block";
-    } else {
-        if (loginReminder) loginReminder.style.display = "none";
+    } 
+    if (isAuthenticated && loginReminder) {
+        loginReminder.style.display = "none";
     }
 
     if (form && isAuthenticated) {
