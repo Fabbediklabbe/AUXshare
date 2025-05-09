@@ -155,11 +155,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const likeCount = song.likes?.length || 0;
         const likers = song.likes?.join(', ') || "Ingen har gillat än";
         const loggedInUser = document.body.dataset.username;
-        const alreadyLiked = song.likes?.includes(loggedInUser);
+        const alreadyLiked = Array.isArray(song.likes) && song.likes.includes(loggedInUser);
+        const heartIcon = alreadyLiked ? "❤️" : "🤍";
         songHTML += `
             <div class="like-container">
                 <button class="like-button ${alreadyLiked ? 'liked' : ''}" data-id="${song.id}" data-liked="${alreadyLiked}" title="Gillad av: ${likers}">
-    ❤️              ${likeCount}
+                    ${heartIcon} ${likeCount}
                 </button>
             </div>
         `;
