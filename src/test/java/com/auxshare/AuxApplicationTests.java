@@ -1,10 +1,10 @@
-package com.zeus;
+package com.auxshare;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ZeusApplicationTests {
+class AuxApplicationTests {
 
 	@Test
 	void contextLoads() {

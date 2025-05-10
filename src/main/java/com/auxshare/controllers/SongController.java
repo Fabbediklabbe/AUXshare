@@ -1,17 +1,17 @@
-package com.zeus.controllers;
-
-import com.zeus.models.Like;
-import com.zeus.models.Song;
-import com.zeus.models.User;
-import com.zeus.repositories.LikeRepository;
-import com.zeus.repositories.SongRepository;
-import com.zeus.repositories.UserRepository;
+package com.auxshare.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.auxshare.models.Like;
+import com.auxshare.models.Song;
+import com.auxshare.models.User;
+import com.auxshare.repositories.LikeRepository;
+import com.auxshare.repositories.SongRepository;
+import com.auxshare.repositories.UserRepository;
 
 import java.util.HashMap;
 import java.security.Principal;

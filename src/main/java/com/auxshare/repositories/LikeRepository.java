@@ -1,13 +1,13 @@
-package com.zeus.repositories;
+package com.auxshare.repositories;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.zeus.models.Like;
-import com.zeus.models.Song;
-import com.zeus.models.User;
+import com.auxshare.models.Like;
+import com.auxshare.models.Song;
+import com.auxshare.models.User;
 
 public interface LikeRepository extends JpaRepository<Like, Long> {
     boolean existsByUserAndSong(User user, Song song);

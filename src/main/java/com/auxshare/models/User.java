@@ -1,4 +1,4 @@
-package com.zeus.models;
+package com.auxshare.models;
 
 import jakarta.persistence.*;
 import java.util.List;

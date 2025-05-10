@@ -1,4 +1,4 @@
-package com.zeus.config;
+package com.auxshare.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

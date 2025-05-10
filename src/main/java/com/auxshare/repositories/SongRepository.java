@@ -1,11 +1,12 @@
-package com.zeus.repositories;
-
-import com.zeus.models.Song;
-import com.zeus.models.User;
+package com.auxshare.repositories;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.auxshare.models.Song;
+import com.auxshare.models.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import java.util.List;

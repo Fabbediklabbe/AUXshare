@@ -1,4 +1,4 @@
-package com.zeus.models;
+package com.auxshare.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

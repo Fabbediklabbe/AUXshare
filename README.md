@@ -1,6 +1,6 @@
-# Zeus Music Sharing App
+# AUX Music Sharing App
 
-Zeus is a simple and elegant music-sharing web application that allows users to share their favorite songs from platforms like YouTube, Spotify, and SoundCloud. The app is built with Java, Spring Boot, and MariaDB, and is hosted on a Raspberry Pi with SSL encryption for secure access.
+AUX is a simple and elegant music-sharing web application that allows users to share their favorite songs from platforms like YouTube, Spotify, and SoundCloud. The app is built with Java, Spring Boot, and MariaDB, and is hosted on a Raspberry Pi with SSL encryption for secure access.
 
 ## Features
 - Share music via embeddable links from YouTube, Spotify, and SoundCloud
@@ -17,8 +17,8 @@ Zeus is a simple and elegant music-sharing web application that allows users to 
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Fabbediklabbe/ZEUS.git
-    cd ZEUS
+    git clone https://github.com/Fabbediklabbe/AUXshare.git
+    cd AUXshare
     ```
 2. Build the project:
     ```bash
@@ -31,15 +31,15 @@ Zeus is a simple and elegant music-sharing web application that allows users to 
 
 4. Run the application manually:
     ```bash
-    screen -S ZEUS
-    sudo java -jar target/zeus-0.0.1-SNAPSHOT.jar
+    screen -S AUX
+    sudo java -jar target/aux-0.0.1-SNAPSHOT.jar
     ctrl + a
     ctrl + d
     ```
 
 ## Useful Commands
-- Check logs: `sudo journalctl -u zeus -f`
-- Restart service: `sudo systemctl restart zeus`
+- Check logs: `sudo journalctl -u aux -f`
+- Restart service: `sudo systemctl restart aux`
 - Check open ports: `sudo netstat -tulnp`
 
 ## Troubleshooting
@@ -47,5 +47,5 @@ Zeus is a simple and elegant music-sharing web application that allows users to 
 - Ensure SSL certificates are valid: `sudo certbot certificates`
 - Check if ports 80 and 443 are open in the firewall.
 
-Enjoy sharing your favorite music with Zeus!
+Enjoy sharing your favorite music with AUX!
 

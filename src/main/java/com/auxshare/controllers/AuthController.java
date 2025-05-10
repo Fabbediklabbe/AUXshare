@@ -1,11 +1,13 @@
-package com.zeus.controllers;
-import com.zeus.models.User;
-import com.zeus.repositories.UserRepository;
+package com.auxshare.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.auxshare.models.User;
+import com.auxshare.repositories.UserRepository;
+
 import org.springframework.ui.Model;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
