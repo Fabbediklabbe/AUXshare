@@ -76,7 +76,7 @@ public class SongController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        Optional<User> existingUser = userRepository.findByUsername(username);
+        Optional<User> existingUser = userRepository.findByUsernameIgnoreCase(username);
         if (existingUser.isEmpty()) {
             return ResponseEntity.status(401).build(); // Unauthorized
         }
@@ -96,7 +96,7 @@ public class SongController {
         if (songOpt.isEmpty()) return ResponseEntity.notFound().build();
 
         Song song = songOpt.get();
-        User user = userRepository.findByUsername(principal.getName()).orElseThrow();
+        User user = userRepository.findByUsernameIgnoreCase(principal.getName()).orElseThrow();
 
         if (likeRepository.existsByUserAndSong(user, song)) {
             return ResponseEntity.badRequest().body("Already liked");
@@ -113,7 +113,7 @@ public class SongController {
         if (songOpt.isEmpty()) return ResponseEntity.notFound().build();
 
         Song song = songOpt.get();
-        User user = userRepository.findByUsername(principal.getName()).orElseThrow();
+        User user = userRepository.findByUsernameIgnoreCase(principal.getName()).orElseThrow();
 
         Optional<Like> likeOpt = likeRepository.findByUserAndSong(user, song);
         if (likeOpt.isPresent()) {

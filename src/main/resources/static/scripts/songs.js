@@ -149,7 +149,9 @@ document.addEventListener("DOMContentLoaded", function () {
             songHTML += `<br><small>Tillagd: ${new Date(song.addedAt).toLocaleString()}</small>`;
         }
 
-        songHTML += `<br><small>Uppladdad av: <strong>${song.username || "Okänd"}</strong></small>`;
+        const formattedUsername = song.username ? song.username.charAt(0).toUpperCase() + song.username.slice(1) : "Okänd";
+        songHTML += `<br><small>Uppladdad av: <strong>${formattedUsername}</strong></small>`;
+
 
         // ❤️ Likes
         const likeCount = song.likes?.length || 0;

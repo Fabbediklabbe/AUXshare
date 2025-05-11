@@ -30,7 +30,7 @@ public class AuthController {
 
     @PostMapping("/auxshare/register")
     public String processRegister(@RequestParam String username, @RequestParam String password, Model model) {
-    if (userRepository.findByUsername(username).isPresent()) {
+    if (userRepository.findByUsernameIgnoreCase(username).isPresent()) {
         model.addAttribute("error", "Användarnamnet är redan taget.");
         return "register";
     }
