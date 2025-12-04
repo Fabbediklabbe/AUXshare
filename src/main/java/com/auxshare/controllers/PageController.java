@@ -19,4 +19,9 @@ public class PageController {
     public String showAuxshare() {
         return "auxshare"; // laddar templates/auxshare.html
     }
+
+    @GetMapping("/julius")
+    public String showJulius() {
+        return "julius"; // laddar templates/julius.html
+    }
 }

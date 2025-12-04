@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    line-height: 1.5;
+}
+
+/* Sidhuvud och container */
+
+.page-header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #111827;
+    color: #f9fafb;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+}
+
+/* Generationer */
+
+.generation {
+    margin-bottom: 3rem;
+}
+
+.generation h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+}
+
+.generation-info {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+}
+
+/* Medlemskort */
+
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.member-card {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.25rem 1.5rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.member-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+}
+
+.member-role {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #2563eb;
+    margin-bottom: 0.4rem;
+}
+
+.member-ideal-label {
+    font-size: 0.08rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #6b7280;
+    margin-top: 0.4rem;
+}
+
+.member-ideal {
+    font-size: 1.1rem;
+    color: #374151;
+}
+
+/* Sidfot */
+
+.page-footer {
+    text-align: center;
+    padding: 1.25rem 1rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+    border-top: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
