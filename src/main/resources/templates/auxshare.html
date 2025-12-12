@@ -7,12 +7,13 @@
         <meta name="_csrf_header" th:content="${csrfHeader}" />
 
         <title>AUX</title>
+        <link rel="icon" href="images/AUXicon.png">
         <link rel="stylesheet" href="css/auxshare.css">
     </head>
     
     <body th:data-authenticated="${#authorization.expression('isAuthenticated()')}" th:data-username="${#authentication.name}">
         <header>
-            <img src="images/AUXlogo.png" alt="AUX" id="logo">
+            <img src="images/AUXsmall.png" alt="AUX" id="logo">
         </header>
 
         <main>
