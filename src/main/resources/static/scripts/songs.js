@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers[csrfHeader] = csrfToken;
             }
 
-            fetch(`/api/songs?username=${encodeURIComponent(username)}`, {
+            fetch(`api/songs?username=${encodeURIComponent(username)}`, {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify(newSong)
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function fetchSongs() {
-        fetch("/api/songs")
+        fetch("api/songs")
             .then(response => response.json())
             .then(songs => updateSongList(songs))
             .catch(error => console.error("Fel vid hämtning av låtar:", error));
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const alreadyLiked = this.getAttribute("data-liked") === "true";
                 const method = alreadyLiked ? "DELETE" : "POST";
 
-                fetch(`/api/songs/${songId}/like`, {
+                fetch(`api/songs/${songId}/like`, {
                     method: method,
                     headers: headers
                 })
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
             headers[csrfHeader] = csrfToken;
         }
 
-        fetch(`/api/songs/${songId}`, {
+        fetch(`api/songs/${songId}`, {
             method: "DELETE",
             headers: headers
         })
