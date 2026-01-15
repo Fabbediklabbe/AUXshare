@@ -23,12 +23,12 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/auxshare/register")
+    @GetMapping("/register")
     public String showRegisterForm() {
         return "register";
     }
 
-    @PostMapping("/auxshare/register")
+    @PostMapping("/register")
     public String processRegister(@RequestParam String username, @RequestParam String password, Model model) {
     if (userRepository.findByUsernameIgnoreCase(username).isPresent()) {
         model.addAttribute("error", "Användarnamnet är redan taget.");
@@ -42,7 +42,7 @@ public class AuthController {
     return "redirect:/auxshare/login";
 }
 
-    @GetMapping("/auxshare/login")
+    @GetMapping("/login")
     public String showLoginForm() {
         return "login";
     }

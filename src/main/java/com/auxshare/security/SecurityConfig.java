@@ -20,19 +20,19 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/register", "/css/**", "/images/**", "/auxshare", "/auxshare/logout").permitAll()
+                .requestMatchers("/", "/login", "/register", "/logout", "/css/**", "/images/**", "/scripts/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/songs/**").permitAll()       // TILLÅT GET
                 .requestMatchers(HttpMethod.POST, "/api/songs/**").authenticated()  // Begränsa POST
                 .anyRequest().permitAll() // eller .permitAll() beroende på din önskade säkerhetsnivå
             )
             .formLogin(form -> form
-                .loginPage("/auxshare/login")
-                .defaultSuccessUrl("/auxshare", true)
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
                 .permitAll()
             )
             .logout(logout -> logout
-            .logoutUrl("/auxshare/logout") // ← krävs om du använder den vägen i HTML
-            .logoutSuccessUrl("/auxshare/login?logout")
+            .logoutUrl("/logout") // ← krävs om du använder den vägen i HTML
+            .logoutSuccessUrl("/login?logout")
             .permitAll()
             );
         return http.build();

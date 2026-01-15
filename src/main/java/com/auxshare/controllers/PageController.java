@@ -7,24 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
 
     @GetMapping("/")
-    public String showAuxshareRoot() {
+    public String showAuxshare() {
         return "auxshare"; // templates/auxshare.html
-    }
-
-    // valfritt: behåll /auxshare som alias
-    @GetMapping("/auxshare")
-    public String showAuxshareAlias() {
-        return "redirect:/";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-    	return "login";
-    }
-
-    @GetMapping("/register")
-    public String register() { 
-    	return "register"; 
     }
 }
 
