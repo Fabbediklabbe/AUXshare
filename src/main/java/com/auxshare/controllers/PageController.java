@@ -6,22 +6,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    public PageController() {
-        System.out.println("PageController har laddats!");
-    }
-
     @GetMapping("/")
-    public String showIndex() {
-        return "index"; // laddar templates/index.html
+    public String showAuxshareRoot() {
+        return "auxshare"; // templates/auxshare.html
     }
 
+    // valfritt: behåll /auxshare som alias
     @GetMapping("/auxshare")
-    public String showAuxshare() {
-        return "auxshare"; // laddar templates/auxshare.html
+    public String showAuxshareAlias() {
+        return "redirect:/";
     }
 
-    @GetMapping("/julius")
-    public String showJulius() {
-        return "julius"; // laddar templates/julius.html
+    @GetMapping("/login")
+    public String login() {
+    	return "login";
+    }
+
+    @GetMapping("/register")
+    public String register() { 
+    	return "register"; 
     }
 }
+

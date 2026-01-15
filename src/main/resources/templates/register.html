@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrera konto</title>
-    <link rel="stylesheet" href="/css/auxshare.css">
+    <link rel="stylesheet" th:href="@{/css/auxshare.css}">
 </head>
 <body>
     <h1>Skapa konto</h1>
     <p th:if="${error}" th:text="${error}" style="color: red;"></p>
-    <form th:action="@{/auxshare/register}" method="post">
+    <form th:action="@{/register}" method="post">
         <label for="username">Användarnamn:</label>
         <input type="text" name="username" required>
         <br>
@@ -17,6 +17,6 @@
         <br>
         <button type="submit">Registrera</button>
     </form>
-    <p>Har du redan ett konto? <a th:href="@{/auxshare/login}" style="color: inherit">Logga in här</a>.</p>
+    <p>Har du redan ett konto? <a th:href="@{/login}" style="color: inherit">Logga in här</a>.</p>
 </body>
 </html>

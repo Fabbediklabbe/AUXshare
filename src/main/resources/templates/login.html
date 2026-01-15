@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Logga in</title>
-    <link rel="stylesheet" href="/css/auxshare.css">
+    <link rel="stylesheet" th:href="@{/css/auxshare.css}">
 </head>
 <body>
     <h1>Logga in</h1>
-    <form th:action="@{/auxshare/login}" method="post">
+    <form th:action="@{/login}" method="post">
         <label for="username">Användarnamn:</label>
         <input type="text" name="username" required>
         <br>
@@ -16,6 +16,6 @@
         <br>
         <button type="submit">Logga in</button>
     </form>
-    <p>Har du inget konto? <a th:href="@{/auxshare/register}" style="color: inherit">Registrera dig här</a>.</p>
+    <p>Har du inget konto? <a th:href="@{/register}" style="color: inherit">Registrera dig här</a>.</p>
 </body>
 </html>

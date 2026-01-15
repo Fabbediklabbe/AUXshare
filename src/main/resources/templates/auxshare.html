@@ -7,18 +7,18 @@
         <meta name="_csrf_header" th:content="${csrfHeader}" />
 
         <title>AUX</title>
-        <link rel="icon" href="images/AUXicon.png">
-        <link rel="stylesheet" href="css/auxshare.css">
+        <link rel="icon" th:href="@{/images/AUXicon.png}">
+        <link rel="stylesheet" th:href="@{/css/auxshare.css}">
     </head>
     
     <body th:data-authenticated="${#authorization.expression('isAuthenticated()')}" th:data-username="${#authentication.name}">
         <header>
-            <img src="images/AUXsmall.png" alt="AUX" id="logo">
+            <img th:src="@{images/AUXsmall.png}" alt="AUX" id="logo">
         </header>
 
         <main>
             <div th:if="${#authorization.expression('isAuthenticated()')}">
-                <form th:action="@{/auxshare/logout}" method="post">
+                <form th:action="@{/logout}" method="post">
                     <button type="submit">Logga ut</button>
                 </form>
             </div>
@@ -36,7 +36,7 @@
             </sec:authorize>
 
             <div th:if="${not #authorization.expression('isAuthenticated()')}">
-                <p>Du måste <a href="/auxshare/login" style="color: inherit;">logga in</a> för att kunna lägga till låtar.</p>
+                <p>Du måste <a th:href="@{/login}" style="color: inherit;">logga in</a> för att kunna lägga till låtar.</p>
             </div>
 
             <p id="message"></p>
