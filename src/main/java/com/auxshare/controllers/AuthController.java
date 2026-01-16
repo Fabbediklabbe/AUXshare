@@ -39,7 +39,7 @@ public class AuthController {
     user.setUsername(username);
     user.setPassword(passwordEncoder.encode(password));
     userRepository.save(user);
-    return "redirect:/auxshare/login";
+    return "redirect:/login";
 }
 
     @GetMapping("/login")
